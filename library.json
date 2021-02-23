@@ -1,0 +1,18 @@
+{
+    "name": "RaskCore",
+    "keywords": "iot, core, signals, slots",
+    "description": "Event loop and emission of signals and slots",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/rask-project/rask-core.git"
+    },
+    "version": "1.0",
+    "exclude": "tests",
+    "examples": "examples/*/*.ino",
+    "frameworks": "arduino",
+    "platforms": [
+        "atmelavr",
+        "espressif8266",
+        "espressif32"
+    ]
+}
