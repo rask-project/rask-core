@@ -6,6 +6,9 @@ RaskObject obj;
 RaskSlot<> slot;
 
 void setup() {
+    delay(1000);
+    Serial.begin(115200);
+    
     constexpr auto interval {1000};
     obj.setInterval(interval);
     obj.timeout.connect(&slot);
@@ -13,6 +16,8 @@ void setup() {
 
     slot.setCallback([]() { Serial.println("Timeout callback"); });
     slot.setSignalParent(&obj.timeout);
+
+    RaskCore::addEvent(&obj);
 }
 
 void loop() {
