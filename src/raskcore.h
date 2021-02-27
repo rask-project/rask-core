@@ -3,8 +3,9 @@
 #include <map>
 #include "raskobject.h"
 
-std::string pointerStr(RaskObject *event);
-
+/**
+ * @brief Event loop
+ */
 class RaskCore
 {
 public:
