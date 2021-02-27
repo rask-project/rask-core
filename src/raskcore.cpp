@@ -19,25 +19,29 @@ std::map<std::string, RaskObject *> RaskCore::m_events {};
 
 void RaskCore::exec()
 {
-    while (true) {
-        // Timer's events
-        for (auto it = m_events.begin(); it != std::end(m_events); ++it) {
-            auto &event = it->second;
+    for (auto it = m_events.begin(); it != std::end(m_events); ++it) {
+        auto &event = it->second;
 
-            if (!event->running())
+        if (!event->running())
+            continue;
+
+        if (millis() - event->lastRun() >= event->interval()) {
+            event->setLastRun(millis());
+            event->timeout.emit();
+
+            if (event->isSingleShot()) {
+                event->stopTimer();
+                m_events.erase(it);
                 continue;
-
-            if (millis() - event->lastRun() >= event->interval()) {
-                event->setLastRun(millis());
-                event->timeout.emit();
-
-                if (event->isSingleShot()) {
-                    event->stopTimer();
-                    m_events.erase(it);
-                    continue;
-                }
             }
         }
+    }
+}
+
+void RaskCore::loop()
+{
+    while (true) {
+        exec();
     }
 }
 

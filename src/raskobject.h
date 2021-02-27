@@ -9,6 +9,10 @@
 template <typename ...Args>
 class RaskSlot;
 
+/**
+ * @brief Signal emission template
+ * @tparam Args
+ */
 template <typename ...Args>
 class RaskSignal
 {
@@ -20,9 +24,22 @@ public:
     RaskSignal() = default;
     ~RaskSignal() = default;
 
+    /**
+     * @brief Signal emission
+     * @param args 
+     */
     void emit(Args... args) { for (auto &it: m_slots) (*it)(args...); }
 
+    /**
+     * @brief Connects the slot to the signal
+     * @param slot
+     */
     inline void connect(RaskSlot<Args...> *slot) { m_slots.push_back(slot); }
+
+    /**
+     * @brief  Disconnect the slot of the signal
+     * @param slot 
+     */
     void disconnect(RaskSlot<Args...> *slot)
     {
         for (auto it = m_slots.begin(); it != m_slots.end(); ++it) {
@@ -32,12 +49,20 @@ public:
             }
         }
     }
+
+    /**
+     * @brief Disconnect all slots
+     */
     inline void disconnect() { m_slots.clear(); }
 
 private:
     std::vector<RaskSlot<Args...> *> m_slots;
 };
 
+/**
+ * @brief Slot / callback to be executed when the signal is emitted
+ * @tparam Args 
+ */
 template <typename ...Args>
 class RaskSlot
 {
@@ -64,12 +89,20 @@ public:
     void operator()(Args... args) { call(args...); }
     inline void call(Args... args) { if (m_init) m_callback(args...); }
 
+    /**
+     * @brief Set the Callback object to be executed
+     * @param callback 
+     */
     inline void setCallback(std::function<void(Args...)> callback)
     {
         m_init = true;
         m_callback = callback;
     }
 
+    /**
+     * @brief Set the Signal Parent object to remove slot when it is deleted
+     * @param parent 
+     */
     inline void setSignalParent(RaskSignal<Args...> *parent) { m_signalParent = parent; }
 
 private:
@@ -79,7 +112,8 @@ private:
 };
 
 /**
- * @brief The RaskObject class
+ * @brief Contains properties to run the timer, 
+ * often at intervals or single shot.
  */
 class RaskObject
 {
@@ -93,7 +127,7 @@ public:
     ~RaskObject();
 
     /**
-     * @brief interval for timer
+     * @brief Interval time defined
      * @return interval in ms
      */
     unsigned long interval() const;
@@ -104,7 +138,7 @@ public:
     void setInterval(unsigned long value);
 
     /**
-     * @brief startTimer
+     * @brief Start running the timer
      */
     void startTimer();
     /**
@@ -114,7 +148,7 @@ public:
     void startTimer(unsigned long value);
 
     /**
-     * @brief stopTimer
+     * @brief  Stop running the timer
      */
     void stopTimer();
 
@@ -124,34 +158,37 @@ public:
      */
     unsigned long lastRun() const;
     /**
-     * @brief setLastRun set last timer run
-     * @param value unsigned long)ms_
+     * @brief Last timer run
+     * @param value unsigned long(ms)
      */
     void setLastRun(unsigned long value);
 
     /**
-     * @brief isSingleShot return if timer is single shot
+     * @brief Return whether the timer is single shot
      * @return boolean
      */
     bool isSingleShot() const;
     /**
-     * @brief singleShot set interval and define with single shot
+     * @brief Set timer as single shot
      * @param value unsigned long(ms)
      */
     void singleShot(unsigned long value);
 
     /**
-     * @brief running return if timer is running
+     * @brief Returns whether the timer is running
      * @return boolean
      */
     bool running() const;
     /**
-     * @brief setRunning define wheter the timer should continue to run
+     * @brief Set whether the timer is running
      * @param value boolean
      */
     void setRunning(bool value);
 
-// signals
+/**
+ * signals 
+ */
+
     /**
      * @brief signal timeout
      */
@@ -163,5 +200,8 @@ private:
     RaskObject operator=(const RaskObject &) = delete;
     RaskObject operator=(RaskObject &&) = delete;
 
+    /**
+     * @brief Removes RaskObject from the event loop
+     */
     void removeEventFromLoop();
 };
