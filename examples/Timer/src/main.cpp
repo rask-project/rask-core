@@ -13,6 +13,7 @@ void setup() {
     obj.setInterval(interval);
     obj.timeout.connect(&slot);
     obj.startTimer();
+    obj.singleShot(interval);
 
     slot.setCallback([]() { Serial.println("Timeout callback"); });
     slot.setSignalParent(&obj.timeout);
