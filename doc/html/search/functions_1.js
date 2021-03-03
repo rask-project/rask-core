@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['connect_32',['connect',['../d0/dff/class_rask_signal.html#a78f048ce64fe800749c0337f453d2d3b',1,'RaskSignal']]]
+  ['blinkoff_49',['blinkOff',['../dd/d7e/class_rask_serial_led.html#a02037696faa1f483cfbd3024ede20bbc',1,'RaskSerialLed']]],
+  ['blinkon_50',['blinkOn',['../dd/d7e/class_rask_serial_led.html#a6a2d0e192dfabc1ed69f6aae18b1e7aa',1,'RaskSerialLed']]]
 ];

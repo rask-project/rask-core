@@ -1,15 +1,22 @@
 #pragma once
 
 #include <map>
+#include <Arduino.h>
 #include "raskobject.h"
 
 /**
- * @brief Event loop
+ * @brief Loops event for execution of timers and pseudo-threads
  */
 class RaskCore
 {
 public:
+    /**
+     * @brief Construct a new Rask Core object
+     */
     RaskCore() = default;
+    /**
+     * @brief Destroy the Rask Core object
+     */
     ~RaskCore() = default;
 
     /**

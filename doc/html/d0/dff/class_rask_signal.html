@@ -98,6 +98,14 @@ $(document).ready(function(){initNavTree('d0/dff/class_rask_signal.html','../../
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a2a3f42feec43347373d3e88be9501e62"><td class="memItemLeft" align="right" valign="top"><a id="a2a3f42feec43347373d3e88be9501e62"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/dff/class_rask_signal.html#a2a3f42feec43347373d3e88be9501e62">RaskSignal</a> ()=default</td></tr>
+<tr class="memdesc:a2a3f42feec43347373d3e88be9501e62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Rask Signal object. <br /></td></tr>
+<tr class="separator:a2a3f42feec43347373d3e88be9501e62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7eb09824e77181beda465d8e23ac67b8"><td class="memItemLeft" align="right" valign="top"><a id="a7eb09824e77181beda465d8e23ac67b8"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/dff/class_rask_signal.html#a7eb09824e77181beda465d8e23ac67b8">~RaskSignal</a> ()=default</td></tr>
+<tr class="memdesc:a7eb09824e77181beda465d8e23ac67b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the Rask Signal object. <br /></td></tr>
+<tr class="separator:a7eb09824e77181beda465d8e23ac67b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0b88c1021c5e853f304505c395586b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/dff/class_rask_signal.html#ab0b88c1021c5e853f304505c395586b5">emit</a> (Args... args)</td></tr>
 <tr class="memdesc:ab0b88c1021c5e853f304505c395586b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signal emission.  <a href="../../d0/dff/class_rask_signal.html#ab0b88c1021c5e853f304505c395586b5">More...</a><br /></td></tr>
 <tr class="separator:ab0b88c1021c5e853f304505c395586b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -119,7 +127,7 @@ class RaskSignal&lt; Args &gt;</h3>
 <p>Signal emission template. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">Args</td><td></td></tr>
+    <tr><td class="paramname">Arguments</td><td>template. Ex: &lt;int, bool, const char *&gt; </td></tr>
   </table>
   </dd>
 </dl>
@@ -153,7 +161,7 @@ template&lt;typename ... Args&gt; </div>
 <p>Connects the slot to the signal. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">slot</td><td></td></tr>
+    <tr><td class="paramname">slot</td><td><a class="el" href="../../d1/d89/class_rask_slot.html" title="Slot / callback to be executed when the signal is emitted.">RaskSlot</a> object reference </td></tr>
   </table>
   </dd>
 </dl>
@@ -189,7 +197,7 @@ template&lt;typename ... Args&gt; </div>
 <p>Disconnect the slot of the signal. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">slot</td><td></td></tr>
+    <tr><td class="paramname">slot</td><td><a class="el" href="../../d1/d89/class_rask_slot.html" title="Slot / callback to be executed when the signal is emitted.">RaskSlot</a> object reference </td></tr>
   </table>
   </dd>
 </dl>
@@ -225,7 +233,7 @@ template&lt;typename ... Args&gt; </div>
 <p>Signal emission. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">args</td><td></td></tr>
+    <tr><td class="paramname">args</td><td>Arguments template. Ex: &lt;int, bool, const char *&gt; </td></tr>
   </table>
   </dd>
 </dl>
@@ -233,7 +241,7 @@ template&lt;typename ... Args&gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/<a class="el" href="../../d6/d7a/raskobject_8h_source.html">raskobject.h</a></li>
+<li>/home/marssola/Developer/Rask/node-board/lib/rask-core/src/<a class="el" href="../../d6/d7a/raskobject_8h_source.html">raskobject.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

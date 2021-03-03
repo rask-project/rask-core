@@ -23,10 +23,13 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "Rask Core", "index.html", [
-    [ "Rask Core", "d3/dcc/md__r_e_a_d_m_e.html", null ],
+    [ "Rask Core", "db/dd3/md__home_marssola__developer__rask_node-board_lib_rask-core__r_e_a_d_m_e.html", [
+      [ "Examples", "db/dd3/md__home_marssola__developer__rask_node-board_lib_rask-core__r_e_a_d_m_e.html#autotoc_md1", null ]
+    ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", null ],
         [ "Functions", "functions_func.html", null ],

@@ -1,17 +1,16 @@
 #pragma once
 
+#include <Arduino.h>
 #include <string>
-#include <map>
 #include <vector>
 #include <functional>
-#include <iostream>
 
 template <typename ...Args>
 class RaskSlot;
 
 /**
  * @brief Signal emission template
- * @tparam Args
+ * @tparam Arguments template. Ex: <int, bool, const char *>
  */
 template <typename ...Args>
 class RaskSignal
@@ -21,24 +20,30 @@ class RaskSignal
     RaskSignal &operator=(const RaskSignal &) = delete;
 
 public:
+    /**
+     * @brief Construct a new Rask Signal object
+     */
     RaskSignal() = default;
+    /**
+     * @brief Destroy the Rask Signal object
+     */
     ~RaskSignal() = default;
 
     /**
      * @brief Signal emission
-     * @param args 
+     * @param args Arguments template. Ex: <int, bool, const char *>
      */
     void emit(Args... args) { for (auto &it: m_slots) (*it)(args...); }
 
     /**
      * @brief Connects the slot to the signal
-     * @param slot
+     * @param slot RaskSlot object reference
      */
     inline void connect(RaskSlot<Args...> *slot) { m_slots.push_back(slot); }
 
     /**
-     * @brief  Disconnect the slot of the signal
-     * @param slot 
+     * @brief Disconnect the slot of the signal
+     * @param slot RaskSlot object reference
      */
     void disconnect(RaskSlot<Args...> *slot)
     {
@@ -61,7 +66,7 @@ private:
 
 /**
  * @brief Slot / callback to be executed when the signal is emitted
- * @tparam Args 
+ * @tparam Arguments template. Ex: <int, bool, const char *>
  */
 template <typename ...Args>
 class RaskSlot
@@ -71,15 +76,27 @@ class RaskSlot
     RaskSlot &operator=(const RaskSlot &) = delete;
 
 public:
+    /**
+     * @brief Construct a new Rask Slot object
+     * @param parent Parent signal object
+     */
     RaskSlot(RaskSignal<Args...> *parent = nullptr): 
         m_init(false), 
         m_signalParent(parent)
     {}
+    /**
+     * @brief Construct a new Rask Slot object
+     * @param callback Function called when the signal is emitted
+     * @param parent Parent signal object
+     */
     RaskSlot(std::function<void(Args...)> callback, RaskSignal<Args...> *parent = nullptr): 
         m_init(true), 
         m_callback(callback),
         m_signalParent(parent)
     {}
+    /**
+     * @brief Destroy the Rask Slot object
+     */
     ~RaskSlot() 
     {
         if (m_signalParent != nullptr)
@@ -91,7 +108,7 @@ public:
 
     /**
      * @brief Set the Callback object to be executed
-     * @param callback 
+     * @param callback Function called when the signal is emitted
      */
     inline void setCallback(std::function<void(Args...)> callback)
     {
@@ -101,7 +118,7 @@ public:
 
     /**
      * @brief Set the Signal Parent object to remove slot when it is deleted
-     * @param parent 
+     * @param parent Parent signal object
      */
     inline void setSignalParent(RaskSignal<Args...> *parent) { m_signalParent = parent; }
 
@@ -123,7 +140,13 @@ class RaskObject
     bool m_running;
 
 public:
+    /**
+     * @brief Construct a new Rask Object object
+     */
     RaskObject();
+    /**
+     * @brief Destroy the Rask Object object
+     */
     ~RaskObject();
 
     /**
@@ -133,7 +156,7 @@ public:
     unsigned long interval() const;
     /**
      * @brief Set the Interval value
-     * @param value unsigned long(ms)
+     * @param value Timer interval in ms
      */
     void setInterval(unsigned long value);
 
@@ -142,24 +165,24 @@ public:
      */
     void startTimer();
     /**
-     * @brief startTimer
-     * @param value unsigned long(ms)
+     * @brief Start running the timer at the specified interval
+     * @param value Timer interval in ms
      */
     void startTimer(unsigned long value);
 
     /**
-     * @brief  Stop running the timer
+     * @brief Stop running the timer
      */
     void stopTimer();
 
     /**
-     * @brief lastRun get timer from last run
-     * @return unsigned long(ms)
+     * @brief Last execution time
+     * @return Last execution time in ms
      */
     unsigned long lastRun() const;
     /**
-     * @brief Last timer run
-     * @param value unsigned long(ms)
+     * @brief Set last execution time
+     * @param value Timer interval in ms
      */
     void setLastRun(unsigned long value);
 
@@ -170,7 +193,7 @@ public:
     bool isSingleShot() const;
     /**
      * @brief Set timer as single shot
-     * @param value unsigned long(ms)
+     * @param value Timer interval in ms
      */
     void singleShot(unsigned long value);
 
@@ -185,10 +208,7 @@ public:
      */
     void setRunning(bool value);
 
-/**
- * signals 
- */
-
+/** signals **/
     /**
      * @brief signal timeout
      */

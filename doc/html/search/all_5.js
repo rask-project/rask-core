@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['lastrun_7',['lastRun',['../d0/d27/class_rask_object.html#ad7283ca3b9dbf83e96f99b79d5fb2a69',1,'RaskObject']]],
-  ['loop_8',['loop',['../d1/dfb/class_rask_core.html#a2bf29d03f376500036f6d49bdfa2b38a',1,'RaskCore']]]
+  ['interval_8',['interval',['../d0/d27/class_rask_object.html#a0ac7d26e66af6bb5e789e479ac690b2b',1,'RaskObject']]],
+  ['issingleshot_9',['isSingleShot',['../d0/d27/class_rask_object.html#abbce79fde610aad52212aa423adb3f4e',1,'RaskObject']]]
 ];

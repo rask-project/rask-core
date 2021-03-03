@@ -1,7 +1,4 @@
 #include "raskobject.h"
-#include <Arduino.h>
-#include <iostream>
-
 #include "raskcore.h"
 
 RaskObject::RaskObject():

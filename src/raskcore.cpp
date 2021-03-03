@@ -1,10 +1,5 @@
 #include "raskcore.h"
-
-#include <Arduino.h>
-#include <iostream>
 #include <sstream>
-#include <algorithm>
-#include <chrono>
 
 std::string pointerStr(RaskObject *event)
 {
