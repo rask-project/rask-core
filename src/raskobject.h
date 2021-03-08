@@ -5,6 +5,37 @@
 #include <vector>
 #include <functional>
 
+namespace Rask
+{
+namespace TimeLiterals
+{
+    /**
+     * @brief Convert seconds to milliseconds
+     * @param seconds 
+     * @return uint64_t 
+     */
+    uint64_t operator ""_s (uint64_t seconds);
+    /**
+     * @brief Convert seconds to milliseconds
+     * @param seconds 
+     * @return uint64_t 
+     */
+    uint64_t operator ""_s (long double seconds);
+    /**
+     * @brief Convert minutes to milliseconds
+     * @param minutes 
+     * @return uint64_t 
+     */
+    uint64_t operator ""_m (uint64_t minutes);
+    /**
+     * @brief Convert minutes to milliseconds
+     * @param minutes 
+     * @return uint64_t 
+     */
+    uint64_t operator ""_m (long double minutes);
+}
+}
+
 template <typename ...Args>
 class RaskSlot;
 
@@ -225,3 +256,11 @@ private:
      */
     void removeEventFromLoop();
 };
+
+inline uint64_t Rask::TimeLiterals::operator""_s(uint64_t seconds) { return seconds * 1000; }
+
+inline uint64_t Rask::TimeLiterals::operator""_s(long double seconds) { return seconds * 1000; }
+
+inline uint64_t Rask::TimeLiterals::operator""_m(uint64_t minutes) { return minutes * 60 * 1000; }
+
+inline uint64_t Rask::TimeLiterals::operator""_m(long double minutes) { return minutes * 60 * 1000; }
