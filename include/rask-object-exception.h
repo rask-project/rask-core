@@ -9,7 +9,8 @@ enum class Error
 {
     Error = -1,
     Ok = 0,
-    TimerIntervalInvalid
+    TimerIntervalInvalid,
+    NoFunctionDefined
 };
 
 class ObjectException : public std::exception
