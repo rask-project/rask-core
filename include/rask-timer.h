@@ -22,20 +22,22 @@ class Timer
     std::chrono::microseconds m_interval;
 
 public:
+    Timer(const Timer&) = delete;
+    Timer &operator=(const Timer&) = delete;
+
     /**
      * @brief Construct a new Timer object
      * @param objName - Timer name
      * @param callback - lambda to be executed when timeout
      */
-    explicit Timer(const char *objName = "");
+    explicit Timer(const char *objName);
 
     /**
      * @brief Destroy the Timer object
      */
     ~Timer();
 
-    Timer(const Timer&) = delete;
-    Timer &operator=(const Timer&) = delete;
+    inline const char *getObjectName() { return m_args.name; }
 
     inline void setCallback(std::function<void()> callback)
     {
@@ -51,12 +53,7 @@ public:
     /**
      * @brief Start timer
      */
-    inline void start()
-    {
-        if (m_interval.count() == 0)
-            throw RaskException::ObjectException(RaskException::Error::TimerIntervalInvalid);
-        esp_timer_start_periodic(m_handler, m_interval.count());
-    }
+    void start();
 
     /**
      * @brief Start timer with interval
@@ -82,11 +79,7 @@ public:
     /**
      * @brief Stop timer
      */
-    inline void stop()
-    {
-        std::cout << "Stop timer\n";
-        esp_timer_stop(m_handler);
-    }
+    inline void stop() { esp_timer_stop(m_handler); }
 
 private:
     /**
