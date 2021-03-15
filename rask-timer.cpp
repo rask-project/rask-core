@@ -8,7 +8,7 @@ namespace Object {
 
 Timer::Timer(const char *objName) : 
     m_args(),
-    m_callback(),
+    m_callback(nullptr),
     m_interval(0)
 {
     m_args.callback = onTimeout;
@@ -27,11 +27,28 @@ Timer::~Timer()
 
 void Timer::onTimeout(void *arg)
 {
+    auto *timer = static_cast<Timer *>(arg);
     try {
-        auto *timer = static_cast<Timer *>(arg);
+        if (timer->m_callback == nullptr)
+            throw RaskException::ObjectException(RaskException::Error::NoFunctionDefined);
         timer->m_callback();
-    } catch(const std::exception& e) {
-        std::cerr << e.what() << '\n';
+    } catch (const RaskException::ObjectException& e) {
+        std::cerr << "Error: " << timer->getObjectName() << " - " << e.what() << '\n';
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << timer->getObjectName() << " - " << e.what() << '\n';
+    }
+}
+
+void Timer::start()
+{
+    try {
+        if (m_interval.count() == 0)
+                throw RaskException::ObjectException(RaskException::Error::TimerIntervalInvalid);
+            esp_timer_start_periodic(m_handler, m_interval.count());
+    } catch (const RaskException::ObjectException& e) {
+        std::cerr << "Error: " << getObjectName() << " - " << e.what() << '\n';
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << getObjectName() << " - " << e.what() << '\n';
     }
 }
 
