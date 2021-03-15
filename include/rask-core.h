@@ -1,6 +1,6 @@
-#include <string>
 #include <vector>
 #include <functional>
+#include <iostream>
 
 namespace Rask
 {
